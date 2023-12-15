@@ -1,0 +1,5 @@
+<launch>
+	<node name="set_initial_point" pkg="progetto_robot" type="initial_pose.py" output="screen"/>
+	<node name="navigate_to" pkg="progetto_robot" type="navigate_to.py" output="screen"/>
+	<node name="choose_point" pkg="progetto_robot" type="choose_point.py" output="screen"/>
+</launch>
