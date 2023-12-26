@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import rospy
-from std_msgs.msg import Bool
+from progetto_robot.msg import StartMsg
 from geometry_msgs.msg import PoseWithCovarianceStamped
 from nav_msgs.msg import Odometry
 
@@ -10,7 +10,7 @@ class InitialPose:
 	def __init__(self):
 		rospy.init_node("set_initial_point")
 		self.poseTopic = rospy.Publisher("/initialpose", PoseWithCovarianceStamped, queue_size = 2)
-		self.navigationTopic = rospy.Publisher("/startnavigation", Bool, queue_size = 2)
+		self.navigationTopic = rospy.Publisher("/startnavigation", StartMsg, queue_size = 2)
 
 	def set_pose(self):
 		pose_msg = PoseWithCovarianceStamped()
@@ -23,7 +23,10 @@ class InitialPose:
 		rospy.loginfo("Pose setted on: %s"%pose_msg)
 		self.poseTopic.publish(pose_msg)
 		rospy.loginfo("Pose Published, ready to shutdown the node")
-		self.navigationTopic.publish(True)
+		start_msg = StartMsg()
+		start_msg.start = True
+		start_msg.msg = "Here we go"
+		self.navigationTopic.publish(start_msg)
 		rospy.signal_shutdown("My job here is done *skatuuush*")
 
 

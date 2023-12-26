@@ -2,7 +2,7 @@
 
 import rospy
 import yaml
-from std_msgs.msg import Bool
+from progetto_robot.msg import StartMsg
 from progetto_robot.srv import Waypoint, WaypointResponse
 
 class ChoosePoint:
@@ -12,7 +12,7 @@ class ChoosePoint:
 		with open("/home/nick/catkin_ws/src/progetto_robot/scripts/waypoints.yaml", "r") as f:
 			self.data = yaml.safe_load(f)
 		#print(self.data)
-		self.startTopic = rospy.Subscriber("/startnavigation", Bool, self.interface )
+		self.startTopic = rospy.Subscriber("/startnavigation", StartMsg, self.interface )
 		#self.navigationTopic = rospy.Publisher("/go_waypoint", Waypoint, queue_size=10 )
 
 	def choose(self):
