@@ -15,6 +15,11 @@ class ChoosePoint:
 		self.startTopic = rospy.Subscriber("/startnavigation", StartMsg, self.interface )
 		#self.navigationTopic = rospy.Publisher("/go_waypoint", Waypoint, queue_size=10 )
 
+	def save_param(self,pose):
+		rospy.set_param("destination/x",pose[0])
+		rospy.set_param("destination/y",pose[1])
+		rospy.set_param("destination/z",pose[2])
+
 	def choose(self):
 		print("Choose between these rooms where you want navigate to")
 		n = 0
@@ -35,6 +40,7 @@ class ChoosePoint:
 			point = self.data[place]
 			rospy.wait_for_service("navigation_service")
 			try :
+				self.save_param(point)
 				navigator = rospy.ServiceProxy("navigation_service",Waypoint)
 				navigator(point[0],point[1],point[2])
 			except rospy.ServiceException as e:
