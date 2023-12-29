@@ -76,9 +76,9 @@ class NavigateTo:
 
 if __name__ == "__main__":
 	try:
-        navigator = NavigateTo()
-	while not rospy.is_shutdown():
-		rospy.spin()
-    except Exception as e:
-        print(e)
-        pass
+		navigator = NavigateTo()
+		while not rospy.is_shutdown():
+			rospy.spin()
+	except Exception as e:
+		print(e)
+		pass

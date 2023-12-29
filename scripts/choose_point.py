@@ -54,8 +54,8 @@ class ChoosePoint:
 if __name__ == "__main__":
 	try:
 		choose = ChoosePoint()
-        while not rospy.is_shutdown():
+		while not rospy.is_shutdown():
 			rospy.spin()
-    except Exception as e:
-        print(e)
-        pass
+	except Exception as e:
+		print(e)
+		pass

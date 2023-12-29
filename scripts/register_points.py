@@ -11,7 +11,7 @@ class RegisterPoints:
 		rospy.init_node("register_points", anonymous = True)
 		with open("/home/nick/catkin_ws/src/progetto_robot/scripts/waypoints.yaml", "r") as f:
 			self.data = yaml.safe_load(f)
-		print(self.data)
+		#print(self.data)
 
 	# Save the waypoints in the waypoints file
 	def save_yaml(self):
@@ -32,10 +32,11 @@ class RegisterPoints:
 			self.data[name] = point
 		self.save_yaml()
 
+
 if __name__ == "__main__":
 	try:
-        register = RegisterPoints()
+		register = RegisterPoints()
 		register.interface()
-    except Exception as e:
-        print(e)
-        pass
+	except Exception as e:
+		print(e)
+		pass

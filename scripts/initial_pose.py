@@ -19,6 +19,7 @@ class InitialPose:
 		pose_msg.header.frame_id = "map"
 		gazebo_pose = rospy.wait_for_message("/odom", Odometry)
 		pose_msg.pose.pose = gazebo_pose.pose.pose
+		rospy.sleep(1)
 		rospy.loginfo("Pose setted on: %s"%pose_msg)
 		self.poseTopic.publish(pose_msg)
 		self.save_param(gazebo_pose.pose.pose.position)
@@ -37,9 +38,9 @@ class InitialPose:
 
 if __name__ == "__main__":
 	try:
-        pose = InitialPose()
+		pose = InitialPose()
 		pose.set_pose()
-    except Exception as e:
-        print(e)
-        pass
+	except Exception as e:
+		print(e)
+		pass
 	
